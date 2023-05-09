@@ -1,0 +1,264 @@
+Vraag 1
+
+
+Input :
+Query:
+SELECT COUNT(*) FROM departments
+
+Output:
+ Count 11
+
+
+
+
+Vraag 2: 
+
+Query:
+SELECT COUNT(department_name), department_name FROM departments GROUP BY location_id
+
+Output : 
+
+1	IT
+1	Shipping
+5	Administration
+1	Marketing
+1	Human Resources
+1	Sales
+1	Public Relations
+
+
+Vraag 3:
+
+<?php
+
+if (getenv('APP_ENV') !== 'development') {
+  ini_set('display_errors', 0);
+}
+
+ini_set('log_errors', 1);
+ini_set('error_log', '/path/to/application_errors.log');
+
+error_log('Er is een fout opgetreden!');
+
+?>
+
+
+Vraag 4:
+
+Input:
+
+<?php
+
+function keer_om($input) {
+  return strrev($input);
+}
+
+//Voorbeeld gebruik:
+echo keer_om("Invoer string"); // Output: "gnirts reovnI"
+echo keer_om("Een lange tekst"); // Output: "tsekt egnal neE"
+
+?>
+
+
+Output: gnirts reovnItsket egnal neE
+
+
+Vraag 5:
+
+Input:
+
+<?php
+
+class ReverseInput {
+    public function isStringOrArray($input) {
+      if (is_array($input)) {
+        return 'array';
+      } else if (is_string($input)) {
+        return 'string';
+      } else {
+        throw new Exception('Input must be a string or an array.');
+      }
+    }
+  
+    public function reverseArray($arr) {
+      return array_reverse($arr);
+    }
+  
+    public function reverseInput($input) {
+      $type = $this->isStringOrArray($input);
+  
+      if ($type == 'array') {
+        return $this->reverseArray($input);
+      } else {
+        return strrev($input);
+      }
+    }
+  }
+
+  $reverser = new ReverseInput();
+$input1 = 'Hello world!';
+$input2 = array('apple', 'banana', 'orange');
+$input3 = true;
+
+try {
+  echo $reverser->isStringOrArray($input1); // string
+  echo $reverser->isStringOrArray($input2); // array
+  echo $reverser->isStringOrArray($input3); // uitzondering
+} catch (Exception $e) {
+  echo 'Error: ' . $e->getMessage(); // Error: Input must be a string or an array.
+}
+
+echo $reverser->reverseInput($input1); // !dlrow olleH
+print_r($reverser->reverseInput($input2)); // Array ( [0] => orange [1] => banana [2] => apple )
+?>
+
+Output: stringarrayError: Input must be a string or an array.!dlrow olleHArray ( [0] => orange [1] => banana [2] => apple )
+
+
+Vraag 6 : 
+
+Output: 10-1035
+
+Input:
+
+<?php
+
+class NamenLijst {
+  private $namen;
+
+  public function __construct($namen) {
+    $this->namen = $namen;
+  }
+
+  public function zoekNaam($naam) {
+    foreach($this->namen as $index => $voornaam) {
+      if (strtolower($voornaam) === strtolower($naam)) {
+        return $index;
+      }
+    }
+    return -1;
+  }
+}
+$namenLijst = new NamenLijst(array("Anna", "Bob", "Carla", "David", "Emma", "Frank", "Gina", "Hans", "Ingrid", "Jeroen", "Uday"));
+echo $namenLijst->zoekNaam("Uday"); // Output: 10
+echo $namenLijst->zoekNaam("Karel"); // Output: -1
+echo $namenLijst->zoekNaam("Anna"); // Output: 0
+echo $namenLijst->zoekNaam("DAVID"); // Output: 3
+echo $namenLijst->zoekNaam("Frank"); // Output: 5
+
+
+
+  
+
+?>
+
+
+
+Vraag 7 :
+
+
+Output : 
+Uw bankrekening met nummer NL12ABCD3456789012 heeft een saldo van 500 euro.
+U heeft succesvol 250 euro gestort. Uw nieuwe saldo is 750 euro.
+U heeft succesvol 100 euro opgenomen. Uw nieuwe saldo is 650 euro.
+U kunt niet meer geld opnemen dan er op uw rekening staat.
+
+
+
+Input : <?php
+
+class Bankrekening {
+    
+    private $banknummer;
+    private $saldo;
+    
+    public function __construct($banknummer, $saldo = 0) {
+        $this->banknummer = $banknummer;
+        $this->saldo = $saldo;
+    }
+    
+    public function geld_storten($bedrag) {
+        $this->saldo += $bedrag;
+        echo "U heeft succesvol " . $bedrag . " euro gestort. Uw nieuwe saldo is " . $this->saldo . " euro.";
+    }
+    
+    public function geld_opnemen($bedrag) {
+        if ($bedrag > $this->saldo) {
+            echo "U kunt niet meer geld opnemen dan er op uw rekening staat.";
+        } else {
+            $this->saldo -= $bedrag;
+            echo "U heeft succesvol " . $bedrag . " euro opgenomen. Uw nieuwe saldo is " . $this->saldo . " euro.";
+        }
+    }
+    
+    public function getBanknummer() {
+        return $this->banknummer;
+    }
+    
+    public function setBanknummer($banknummer) {
+        $this->banknummer = $banknummer;
+    }
+    
+    public function getSaldo() {
+        return $this->saldo;
+    }
+    
+    public function setSaldo($saldo) {
+        $this->saldo = $saldo;
+    }
+}
+
+$rekening = new Bankrekening("NL12ABCD3456789012", 500);
+echo "Uw bankrekening met nummer " . $rekening->getBanknummer() . " heeft een saldo van " . $rekening->getSaldo() . " euro.<br>";
+$rekening->geld_storten(250);
+echo "<br>";
+$rekening->geld_opnemen(100);
+echo "<br>";
+$rekening->geld_opnemen(1000);
+
+
+?>
+
+
+Vraag 8
+
+
+
+class BankrekeningPlus extends Bankrekening {
+  public $this->limiet = 1000;
+  public function onttrekken()
+  {
+    if($this->balans === 1000){
+      echo "te weinig geld"
+    } 
+    else{
+      $this->bedragontrekken = 100;
+      $this->nieuwgeldmin = $this->balans - $this->bedragontrekken;
+      var_dump(($this->nieuwgeldmin))
+    }
+  }
+
+  
+}
+
+
+
+Vraag 9
+
+
+<?php
+class Product{
+    public function __construct(private $naam,private $beschrijving,private $prijs){}
+    public function setName(string $naam){
+        $this->naam = $naam;
+    }
+    public function getName(){return $this->naam;
+    }
+}
+
+
+?>
+
+b 
+
+omdat er geen constructor is 
