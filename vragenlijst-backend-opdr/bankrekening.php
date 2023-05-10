@@ -1,64 +1,58 @@
  <!-- Vraag 7 en 8  -->
 
 <?php
-  
-  class Bankrekening{
 
-   public $this->banknummer = 'NL05 342342345';
-   public $this->balans = 0;
+class Bankrekening {
+  public $banknummer = 'NL05 342342345';
+  public $balans = 0;
+  public $bedragToevoegen;
+  public $nieuwgeld;
+  public $bedragontrekken;
+  public $nieuwgeldmin;
 
+  public function toevoegen() {
+      $this->bedragToevoegen = 100;
+      $this->nieuwgeld = $this->balans + $this->bedragToevoegen;
+      var_dump($this->nieuwgeld);
+  }
 
-    public function toevoegen() {
-        $this->balans = 0;
-        $this->bedragToevoegen = 100;
-        $this->nieuwgeld = $this->balans + $this->thisbedragToevoegen;
-        var_dump($nieuwgeld);
-    }
-
-    public function onttrekken() {
-        
-      if($this->bedragontrekken === $this->balans){
-        echo "te weinig geld";
+  public function onttrekken() {
+      if ($this->bedragontrekken === $this->balans) {
+          echo "te weinig geld";
+      } else {
+          $this->bedragontrekken = 100;
+          $this->nieuwgeldmin = $this->balans - $this->bedragontrekken;
+          var_dump($this->nieuwgeldmin);
       }
-      else{
-        $this->bedragontrekken = 100;
-        $this->nieuwgeldmin = $this->balans = $this->bedragontrekken;
-        var_dump($this->nieuwgeldmin);
-      }
-    }
- 
+  }
 }
-  
 
 class BankrekeningPlus extends Bankrekening {
-  public $this->limiet = 1000;
-  public function onttrekken(){
-  
-    if($this->balans === 1000){
-      echo "te weinig geld"
-    }
-    else{
-      $this->bedragontrekken = 100;
-      $this->nieuwgeldmin = $this->balans - $this->bedragontrekken;
-      var_dump(($this->nieuwgeldmin))
-    
-  
+  public $limiet = 1000;
+  public $rente;
+
+  public function onttrekken() {
+      if ($this->balans === 1000) {
+          echo "te weinig geld";
+      } else {
+          $this->bedragontrekken = 100;
+          $this->nieuwgeldmin = $this->balans - $this->bedragontrekken;
+          var_dump($this->nieuwgeldmin);
+      }
+  }
+
+  public function rente() {
+      $this->rente = $this->balans * 0.05;
+      var_dump($this->rente);
+  }
+
+  public function sum() {
+      var_dump($this->balans, $this->rente);
+      echo date('Y-m-d');
   }
 }
 
 
-  public function rente(){
-    $this->balans / 100 * 5 = $this->$rente;
-    var_dump($rente);
-
-  }
-  public function sum(){
-    var_dump($this->balans,$this->rente)
-    echo date();
-  }
-
-
-}
 
 ?>
 
